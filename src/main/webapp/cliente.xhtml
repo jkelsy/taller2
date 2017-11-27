@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Taller 2</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form id="formCliente">
+            <p:panel header="Formulario Cliente">
+                <div class="ui-g">
+                    <div class="ui-g-4">
+                        <div><p:outputLabel for="cdcliente" value="cdcliente:"/></div>                            
+                        <p:inputText id="cdcliente" value="#{clienteController.clienteInstance.cdcliente}"/>
+                    </div>
+
+                    <div class="ui-g-4">
+                        <div><p:outputLabel for="dsnombre" value="dsnombre"/> </div>                          
+                        <p:inputText id="dsnombre" value="#{clienteController.clienteInstance.dsnombre}"/>
+                    </div>
+
+                    <div class="ui-g-4">
+                        <div><p:outputLabel for="dsdireccion" value="dsdireccion"/> </div>                          
+                        <p:inputText id="dsdireccion" value="#{clienteController.clienteInstance.dsdireccion}"/>
+                    </div>
+                </div>
+                <div class="ui-g">
+                    <div class="ui-g-4">
+                        <div><p:outputLabel for="dsmail" value="dsmail"/></div>                                                   
+                        <p:inputText id="dsmail" value="#{clienteController.clienteInstance.dsmail}"/>
+                    </div>
+
+                    <div class="ui-g-4">
+                        <div><p:outputLabel for="feregistro" value="feregistro"/> </div>                          
+                        <p:calendar id="feregistro" value="#{clienteController.clienteInstance.feregistro}"/>
+                    </div>
+
+                    <div class="ui-g-4">
+                        <div><p:outputLabel for="febaja" value="febaja"/> </div>                          
+                        <p:calendar id="febaja" value="#{clienteController.clienteInstance.febaja}"/>
+                    </div>
+                </div>
+
+                <div class="ui-g">
+                    <div class="ui-g-4">
+                        <div><p:outputLabel for="cdusuario" value="cdusuario:"/></div>                            
+                        <p:inputText id="cdusuario" value="#{clienteController.clienteInstance.cdusuario}"/>
+                    </div>
+
+                    <div class="ui-g-4">
+                        <div><p:outputLabel for="snactivo" value="snactivo"/> </div>                          
+                        <p:selectOneMenu id="snactivo" 
+                                         value="#{clienteController.clienteInstance.snactivo}"
+                                         autoWidth="true">
+                            <f:selectItem noSelectionOption="true" itemValue="null" itemLabel="Seleccione una opcion"/>
+                            <f:selectItem itemValue="1" itemLabel="Activo"/>
+                            <f:selectItem itemValue="0" itemLabel="Inactivo"/>
+                        </p:selectOneMenu>
+                    </div>
+
+                    <div class="ui-g-4">
+                        <div><p:outputLabel for="cdtelefono" value="cdtelefono"/> </div>                          
+                        <p:inputText id="cdtelefono" value="#{clienteController.clienteInstance.cdtelefono}"/>
+                    </div>
+                </div>
+
+                <div class="ui-g">
+                    <div class="ui-g-4">
+                        <div><p:outputLabel for="dscontacto" value="dscontacto:"/></div>                            
+                        <p:inputText id="dscontacto" value="#{clienteController.clienteInstance.dscontacto}"/>
+                    </div>
+                    <div class="ui-g-4">
+                        <div><p:outputLabel for="dslogo" value="dslogo"/> </div>                          
+                        <p:inputText id="dslogo" value="#{clienteController.clienteInstance.dslogo}"/>
+                    </div>
+                </div>
+
+                <div class="ui-g">
+                    <div class="ui-g-4">
+                        <p:commandButton action="#{clienteController.guardar()}"
+                                         value="Guardar"
+                                         update="formCliente" />
+                    </div>
+                </div>
+                
+                <p:dataTable value="#{clienteController.clienteList}" var="cliente"
+                             rows="3" paginator="true" >
+                    <f:facet name="header">Listado de Clientes</f:facet>
+                    <p:column headerText="id">
+                        <h:outputText value="#{cliente.id}"/>
+                    </p:column>
+                    
+                    <p:column headerText="cdcliente">
+                        <h:outputText value="#{cliente.cdcliente}"/>
+                    </p:column>
+                    
+                    <p:column headerText="dsnombre">
+                        <h:outputText value="#{cliente.dsnombre}"/>
+                    </p:column>
+                    
+                    <p:column headerText="dsdirección">
+                        <h:outputText value="#{cliente.dsdireccion}"/>
+                    </p:column>
+                    
+                    <p:column headerText="dsmail">
+                        <h:outputText value="#{cliente.dsmail}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Opciones">
+                        <p:commandButton action="#{clienteController.seleccionar(cliente)}"
+                                         value="Modificar"
+                                         update="formCliente"/>
+                    </p:column>
+                </p:dataTable>
+
+            </p:panel>
+        </h:form>
+
+
+    </h:body>
+</html>
